@@ -10,9 +10,9 @@ require('mongoose').connection.close(function reestablish() {
   mongo.connect(mongoEnv);
 });
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-});
+// Define router
+var router = require('./app/routes');
+app.use('/', router);
 
 app.listen(3000, function() {
   console.log('Example app listening on port 3000!');
