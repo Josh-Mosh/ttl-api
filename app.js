@@ -4,6 +4,10 @@ const express = require('express');
 const app = express();
 const mongo = require('./services/mongodb');
 const mongoEnv = process.env.NODE_ENV;
+const cors = require('cors');
+
+// enable CORS for ALL requests
+app.use(cors());
 
 // Connect to the database
 require('mongoose').connection.close(function reestablish() {
@@ -12,7 +16,7 @@ require('mongoose').connection.close(function reestablish() {
 
 // Define router
 var router = require('./app/routes');
-app.use('/', router);
+app.use('/api', router);
 
 app.listen(3000, function() {
   console.log('Example app listening on port 3000!');
