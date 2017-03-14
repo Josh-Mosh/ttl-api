@@ -6,11 +6,12 @@ var day = new Schema({
   id: ObjectId,
   updated: { type: Date, default: Date.now },
   date: Date,
-  lat: String,
-  long: String,
-  chapter: String,
+  lat: Number,
+  long: Number,
+  chapter: Number,
   leagues: Number,
-  excerpt: String
+  excerpt: String,
+  location: String
 });
 
 module.exports = mongoose.model('day', day);
