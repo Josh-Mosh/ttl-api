@@ -5,10 +5,10 @@ var mongoose = require('mongoose'),
 var day = new Schema({
   id: ObjectId,
   updated: { type: Date, default: Date.now },
+  chapter: Number,
   date: Date,
   lat: Number,
   long: Number,
-  chapter: Number,
   leagues: Number,
   excerpt: String,
   location: String
