@@ -5,6 +5,13 @@ const app = express();
 const mongo = require('./services/mongodb');
 const mongoEnv = process.env.NODE_ENV;
 const cors = require('cors');
+const bodyParser = require('body-parser');
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(bodyParser.json());
 
 // enable CORS for ALL requests
 app.use(cors());
