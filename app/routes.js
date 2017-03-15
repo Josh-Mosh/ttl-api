@@ -23,7 +23,7 @@ router.post('/days', function(req, res) {
     if (err) {
       res.status(400).send( {error: err });
     }
-    res.status(201).send(day);
+    res.status(201).send({ day: day });
   });
 });
 
