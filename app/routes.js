@@ -19,7 +19,16 @@ router.get('/days', function(req, res) {
 });
 
 router.post('/days', function(req, res) {
-  Day.create(req.body.day, function(err, day) {
+  var day = req.body.day,
+      date = day.date;
+
+  if (date.month && date.day && date.year) {
+    day.date = new Date(date.month + '/' + date.day + '/' + date.year);
+  } else {
+    delete day.date;
+  }
+
+  Day.create(day, function(err, day) {
     if (err) {
       res.status(400).send( {error: err });
     }
