@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
     connections = {
       development: 'mongodb://' + (process.env.LOCAL_MONGO_TTL || 'localhost') + '/ttl',
       test: 'mongodb://' + (process.env.LOCAL_MONGO_TTL || 'localhost') + '/ttl_tests',
-      production: process.env.MONGOHQ_URL
+      production: process.env.MONGODB_URI
     };
 
 function connect(env, url) {
