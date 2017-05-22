@@ -25,6 +25,6 @@ require('mongoose').connection.close(function reestablish() {
 var router = require('./app/routes');
 app.use('/api', router);
 
-app.listen(3000, function() {
-  console.log('Example app listening on port 3000!');
+app.listen(process.env.PORT || 3000, function() {
+  console.log('TTL API listening on port 3000!');
 });
