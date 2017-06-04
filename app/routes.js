@@ -23,7 +23,7 @@ router.post('/days', function(req, res) {
       date = day.date;
 
   if (date.month && date.day && date.year) {
-    day.date = new Date(date.month + '/' + date.day + '/' + date.year);
+    day.date = date.month + '/' + date.day + '/' + date.year;
   } else {
     delete day.date;
   }
@@ -37,7 +37,6 @@ router.post('/days', function(req, res) {
 });
 
 router.delete('/days/:id', function(req, res) {
-  console.log('delete days');
   Day.findByIdAndRemove(req.params.id, function(err, day) {
     if (err) {
       res.status(400).send({ error: err });

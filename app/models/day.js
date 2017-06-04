@@ -6,7 +6,7 @@ var day = new Schema({
   id: ObjectId,
   updated: { type: Date, default: Date.now },
   chapter: Number,
-  date: Date,
+  date: String,
   lat: Number,
   long: Number,
   leagues: Number,
