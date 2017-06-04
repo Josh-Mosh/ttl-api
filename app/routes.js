@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var moment = require('moment');
 
 // Models
 var Day = require('./models/day');
@@ -18,12 +19,22 @@ router.get('/days', function(req, res) {
   });
 });
 
+router.get('/today', function(req, res) {
+  var today = moment().format('M/D');
+  Day.find({ date: today }).exec(function(err, days) {
+    if (err) {
+      res.status(400).send({ error: err });
+    }
+    res.status(200).send({ days: days });
+  });
+});
+
 router.post('/days', function(req, res) {
   var day = req.body.day,
       date = day.date;
 
-  if (date.month && date.day && date.year) {
-    day.date = date.month + '/' + date.day + '/' + date.year;
+  if (date.month && date.day) {
+    day.date = date.month + '/' + date.day;
   } else {
     delete day.date;
   }

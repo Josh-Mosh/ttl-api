@@ -7,6 +7,7 @@ var day = new Schema({
   updated: { type: Date, default: Date.now },
   chapter: Number,
   date: String,
+  year: String,
   lat: Number,
   long: Number,
   leagues: Number,
