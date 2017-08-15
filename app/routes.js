@@ -47,6 +47,15 @@ router.post('/days', function(req, res) {
   });
 });
 
+router.put('/days/:id', function(req, res) {
+  Day.findByIdAndUpdate(req.params.id, req.body.day, { new: true }, function(err, dayDoc) {
+    if (err) {
+      res.status(400).send({ error: err });
+    }
+    res.status(200).send({ day: dayDoc });
+  })
+});
+
 router.delete('/days/:id', function(req, res) {
   Day.findByIdAndRemove(req.params.id, function(err, day) {
     if (err) {
