@@ -20,8 +20,9 @@ router.get('/days', function(req, res) {
 });
 
 router.get('/today', function(req, res) {
-  var today = moment().format('M/D');
-  Day.find({ date: today }).exec(function(err, days) {
+  var month = moment().format('M'),
+      day = moment().format('D');
+  Day.find({ day: day, month: month }).exec(function(err, days) {
     if (err) {
       res.status(400).send({ error: err });
     }
@@ -30,16 +31,7 @@ router.get('/today', function(req, res) {
 });
 
 router.post('/days', function(req, res) {
-  var day = req.body.day,
-      date = day.date;
-
-  if (date.month && date.day) {
-    day.date = date.month + '/' + date.day;
-  } else {
-    delete day.date;
-  }
-
-  Day.create(day, function(err, day) {
+  Day.create(req.body.day, function(err, day) {
     if (err) {
       res.status(400).send({ error: err });
     }
