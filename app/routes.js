@@ -22,7 +22,10 @@ router.get('/days', function(req, res) {
 router.get('/today', function(req, res) {
   var month = moment().format('M'),
       day = moment().format('D');
-  Day.find({ day: day, month: month }).exec(function(err, days) {
+
+  // When we actually have information for every day, use this
+  // Day.find({ day: day, month: month }).exec(function(err, days) {
+  Day.find().limit(2).exec(function(err, days) {
     if (err) {
       res.status(400).send({ error: err });
     }
